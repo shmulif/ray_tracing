@@ -7,16 +7,20 @@ from Vector3 import Vector3
 from OpenGL.GLU import *
 
 class CylinderObj(GeomObj):
-    def __init__(self,radius = 1, height = 2, resolution=100):
+    def __init__(self, bottom_radius = 1, top_radius = 1, height = 2, resolution=100):
         super().__init__()
         self.ball = gluNewQuadric()
         self.resolution = resolution
+        self.bottom_radius = bottom_radius
+        self.top_radius = top_radius
+        self.height = height
         gluQuadricDrawStyle(self.ball, GLU_FILL)
 
     def render_solid(self):
-        gluCylinder(self.ball, self.radius, self.height, self.resolution, self.resolution)
+        gluCylinder(self.ball, self.bottom_radius, self.top_radius, self.height, self.resolution, self.resolution)
 
 
+    # This must be updated, now it renders a sphere
     def local_intersect(self, ray, best_hit):
         s = ray.source
         c = ray.dir

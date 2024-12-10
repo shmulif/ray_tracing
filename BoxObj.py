@@ -84,6 +84,7 @@ class BoxObj(GeomObj):
         BoxObj.draw_side(slices, slices)
         glPopMatrix()
 
+    # This must be updated, now it renders a sphere
     def local_intersect(self, ray, best_hit):
         s = ray.source
         c = ray.dir

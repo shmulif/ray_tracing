@@ -24,6 +24,7 @@ from Window import Window
 from Scene import Scene
 from SphereObj import SphereObj
 from BoxObj import BoxObj
+from CylinderObj import CylinderObj
 from Material import Material
 from Light import Light
 from Color import Color
@@ -81,6 +82,8 @@ def init_scene():
     cam.set_lens_shape(init_view_angle, FRAME_WIDTH / FRAME_HEIGHT, init_near, init_far)
 
     # Create objects and add them to the scene
+
+    # Create and add a sphere
     mat = Material()
     mat.set_copper()
     mat.set_reflectivity(0.1)
@@ -90,6 +93,18 @@ def init_scene():
     ball.scale(1, 2, 1)
     ball.name = "Ball 1"
     scn.add_object(ball)
+
+    # Create and add a cylinder
+    mat = Material()
+    mat.set_copper()
+    mat.set_reflectivity(0.1)
+    cyl = CylinderObj()
+    cyl.set_material(mat)
+    cyl.translate(0,1,0)
+    cyl.rotate(90,Vector3(1,0,0))
+    cyl.scale(1, 2, 1)
+    cyl.name = "Cylinder 1"
+    scn.add_object(cyl)
 
     mat = Material()
     mat.set_silver()
