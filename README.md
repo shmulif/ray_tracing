@@ -6,9 +6,9 @@ Aban Khan, Shmuel Feld, Matthew Glennon, Jose Salgado
 ## Features
 We included the following features in our project <br> 
 
-**Base features:** 
+**Base requirement:** 
 - Room setup 
-- Ray tracing of a box. 
+- Ray tracing of a box
 
 **Graduate requirement:** 
 
