@@ -1,7 +1,7 @@
 # Final Project: Ray Tracing
 
 ## Authors
-Aban Khan, Shmuel Feld, Matthew Glennon, Jose Salgado
+Aban Khan, Shmuel Feld, Matthew Glennon, Jose Salgado, Sai Srujan Vemula, Camryn Keller
 
 ## Features
 We included the following features in our project <br> 
