@@ -84,60 +84,60 @@ def init_scene():
     # Create objects and add them to the scene
 
     # Create and add a sphere
-    mat = Material()
-    mat.set_copper()
-    mat.set_reflectivity(0.1)
-    ball = SphereObj()
-    ball.set_material(mat)
-    ball.translate(0,1,0)
-    ball.scale(1, 2, 1)
-    ball.name = "Ball 1"
-    scn.add_object(ball)
+    # mat = Material()
+    # mat.set_copper()
+    # mat.set_reflectivity(0.1)
+    # ball = SphereObj()
+    # ball.set_material(mat)
+    # ball.translate(0,1,0)
+    # ball.scale(1, 2, 1)
+    # ball.name = "Ball 1"
+    # scn.add_object(ball)
 
     # Create and add a cylinder
-    mat = Material()
-    mat.set_copper()
-    mat.set_reflectivity(0.1)
-    cyl = CylinderObj()
-    cyl.set_material(mat)
-    cyl.translate(0,1,0)
-    cyl.rotate(90,Vector3(1,0,0))
-    cyl.scale(1, 2, 1)
-    cyl.name = "Cylinder 1"
-    scn.add_object(cyl)
+    # mat = Material()
+    # mat.set_copper()
+    # mat.set_reflectivity(0.1)
+    # cyl = CylinderObj()
+    # cyl.set_material(mat)
+    # cyl.translate(0,1,0)
+    # cyl.rotate(90,Vector3(1,0,0))
+    # cyl.scale(1, 2, 1)
+    # cyl.name = "Cylinder 1"
+    # scn.add_object(cyl)
 
-    mat = Material()
-    mat.set_silver()
-    mat.set_reflectivity(0.8)
-    floor = BoxObj()
-    floor.name = "Floor"
-    floor.set_material(mat)
-    floor.translate(0, -2, 0)
-    floor.scale(10, 0.1, 10)
-    scn.add_object(floor)
+    # mat = Material()
+    # mat.set_silver()
+    # mat.set_reflectivity(0.8)
+    # floor = BoxObj()
+    # floor.name = "Floor"
+    # floor.set_material(mat)
+    # floor.translate(0, -2, 0)
+    # floor.scale(10, 0.1, 10)
+    # scn.add_object(floor)
 
     # Create and add a cylinder
-    mat = Material()
-    mat.set_copper()
-    mat.set_reflectivity(0.1)
-    cyl = CylinderObj()
-    cyl.set_material(mat)
-    cyl.translate(0, 1, 0)
-    cyl.rotate(90, Vector3(1, 0, 0))
-    cyl.scale(1, 2, 1)
-    cyl.name = "Cylinder 1"
-    scn.add_object(cyl)
+    # mat = Material()
+    # mat.set_copper()
+    # mat.set_reflectivity(0.1)
+    # cyl = CylinderObj()
+    # cyl.set_material(mat)
+    # cyl.translate(0, 1, 0)
+    # cyl.rotate(90, Vector3(1, 0, 0))
+    # cyl.scale(1, 2, 1)
+    # cyl.name = "Cylinder 1"
+    # scn.add_object(cyl)
 
     # Create and add a cube
-    mat = Material()
-    mat.set_gold()
-    mat.set_reflectivity(0.5)
-    cube = BoxObj()
-    cube.name = "Minecraft"
-    cube.set_material(mat)
-    cube.translate(1, 0, 0)  # Position the cube
-    cube.scale(1, 1, 1)      # Standard unit cube
-    scn.add_object(cube)
+    # mat = Material()
+    # mat.set_gold()
+    # mat.set_reflectivity(0.5)
+    # cube = BoxObj()
+    # cube.name = "Minecraft"
+    # cube.set_material(mat)
+    # cube.translate(1, 0, 0)  # Position the cube
+    # cube.scale(1, 1, 1)      # Standard unit cube
+    # scn.add_object(cube)
 
     # Light setup
     lightA = Light()
@@ -243,6 +243,60 @@ def handle_events():
                 nav.keyboard(event.key)
     return True
 
+def add_menorah_to_scene():
+    # Base of the Menorah (vertical stand)
+    mat = Material()
+    mat.set_copper()
+    mat.set_reflectivity(0.1)
+    base = CylinderObj()
+    base.set_material(mat)
+    base.translate(0, 1, 0)  # Center position
+    base.scale(0.5, 2, 0.5)  # Thinner, taller cylinder for the base
+    base.name = "Menorah Base"
+    scn.add_object(base)
+
+    # Horizontal bar of the Menorah
+    mat = Material()
+    mat.set_gold()
+    mat.set_reflectivity(0.3)
+    horizontal_bar = BoxObj()
+    horizontal_bar.set_material(mat)
+    horizontal_bar.translate(0, 3, 0)  # Positioned above the base
+    horizontal_bar.scale(4.5, 0.2, 0.5)  # Long, thin bar
+    horizontal_bar.name = "Menorah Horizontal Bar"
+    scn.add_object(horizontal_bar)
+
+    # Candles and flames on the Menorah
+    for i in range(9):  # Nine candles
+        # Candle material
+        mat = Material()
+        mat.set_copper()
+        mat.set_reflectivity(0.1)
+
+        # Candle stick (Cylinder)
+        candle = CylinderObj()
+        candle.set_material(mat)
+        candle_height = 1.5 if i != 4 else 2  # Center candle is taller
+        x_offset = -2 + i * 0.5  # Space candles evenly across the bar
+        candle.translate(x_offset, 3.5, 0)  # Position on the horizontal bar
+        candle.scale(0.2, candle_height, 0.2)  # Thin, tall cylinders
+        candle.name = f"Menorah Candle {i+1}"
+        scn.add_object(candle)
+
+        # Flame material
+        mat = Material()
+        mat.set_gold()
+        mat.set_reflectivity(0.8)
+
+        # Flame (Sphere)
+        flame = SphereObj()
+        flame.set_material(mat)
+        flame.translate(x_offset, 3.5 + candle_height, 0)  # Above the candle
+        flame.scale(0.3, 0.3, 0.3)  # Small flame spheres
+        flame.name = f"Menorah Flame {i+1}"
+        scn.add_object(flame)
+
+
 def main():
     global light_angle, light_distance, lightA, render_mode, animate
     win.initialize()
@@ -250,6 +304,8 @@ def main():
 
     clock = pygame.time.Clock()
     running = True
+
+    add_menorah_to_scene()
 
     # Set up lighting and depth-test
     glEnable(GL_LIGHTING)
