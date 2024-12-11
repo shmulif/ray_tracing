@@ -87,16 +87,6 @@ def init_scene():
     cam.look_at(Point3(0, 5, 30), Point3(0, 5, 0), Vector3(0, 1, 0))
     cam.set_lens_shape(init_view_angle, FRAME_WIDTH / FRAME_HEIGHT, init_near, init_far)
 
-    # # Floor
-    # mat = Material()
-    # mat.set_silver()
-    # mat.set_reflectivity(0.8)
-    # floor = BoxObj()
-    # floor.name = "Floor"
-    # floor.set_material(mat)
-    # floor.scale(10, 0.1, 10)
-    # floor.translate(0, -2, 0)
-    # scn.add_object(floor)
 
     # Back Wall
     mat = Material()
@@ -104,9 +94,19 @@ def init_scene():
     back_wall = BoxObj()
     back_wall.name = "Back Wall"
     back_wall.set_material(mat)
-    back_wall.scale(10, 10, 0.1)
-    back_wall.translate(1, 1, 1)
+    back_wall.scale(10, 7, 0.1)
+    back_wall.translate(0, 0.5, -100)
     scn.add_object(back_wall)
+
+    #front wall
+    mat = Material()
+    mat.set_diffuse([1.0, 1.0, 0.8])  # Yellow
+    frontwall = BoxObj()
+    frontwall.name = "frontwall"
+    frontwall.set_material(mat)
+    frontwall.scale(10, 7, 0.1)
+    frontwall.translate(0, 0.5, 100)
+    scn.add_object(frontwall)
 
     # Left Wall
     mat = Material()
@@ -114,8 +114,9 @@ def init_scene():
     left_wall = BoxObj()
     left_wall.name = "Left Wall"
     left_wall.set_material(mat)
-    left_wall.scale(0.1, 10, 10)
-    left_wall.translate(1,1, 1)
+    left_wall.scale(0.1, 7, 10)
+    left_wall.translate(100,0.5, 0)
+    #left_wall.rotate(90,Vector3(0,0,0))
     scn.add_object(left_wall)
 
     # Right Wall
@@ -124,8 +125,8 @@ def init_scene():
     right_wall = BoxObj()
     right_wall.name = "Right Wall"
     right_wall.set_material(mat)
-    right_wall.scale(0.1, 10, 10)
-    right_wall.translate(100, 5, 0)
+    right_wall.scale(0.1, 7, 10)
+    right_wall.translate(-100, 0.5, 0)
     scn.add_object(right_wall)
 
     # Ceiling
