@@ -296,7 +296,35 @@ def add_menorah_to_scene():
         flame.name = f"Menorah Flame {i+1}"
         scn.add_object(flame)
 
+def add_reflect_cube_to_scene():
+    # Create a reflective material
+    mat = Material()
+    mat.set_silver()
+    mat.set_reflectivity(0.9)
 
+    # Create a cube
+    reflect_cube = BoxObj()
+    reflect_cube.set_material(mat)
+    reflect_cube.translate(-5, 3, 0)
+    reflect_cube.scale(1, 3, 1)
+    reflect_cube.name = "Reflective Minecraft"
+    scn.add_object(reflect_cube)
+
+def add_refractive_cube_to_scene():
+    # Create a reflective material
+    mat = Material()
+    mat.set_silver()
+    # Replace below with set_refractivity()
+    # mat.set_reflectivity(0.9)
+
+    # Create a cube
+    reflect_cube = BoxObj()
+    reflect_cube.set_material(mat)
+    reflect_cube.translate(5, 3, 0)
+    reflect_cube.scale(1, 3, 1)
+    reflect_cube.name = "Refractive Minecraft"
+    scn.add_object(reflect_cube)
+    
 def main():
     global light_angle, light_distance, lightA, render_mode, animate
     win.initialize()
@@ -306,6 +334,8 @@ def main():
     running = True
 
     add_menorah_to_scene()
+    add_reflect_cube_to_scene()
+    add_refractive_cube_to_scene()
 
     # Set up lighting and depth-test
     glEnable(GL_LIGHTING)
