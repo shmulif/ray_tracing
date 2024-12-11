@@ -116,6 +116,18 @@ def init_scene():
     floor.scale(10, 0.1, 10)
     scn.add_object(floor)
 
+    # Create and add a cylinder
+    mat = Material()
+    mat.set_copper()
+    mat.set_reflectivity(0.1)
+    cyl = CylinderObj()
+    cyl.set_material(mat)
+    cyl.translate(0, 1, 0)
+    cyl.rotate(90, Vector3(1, 0, 0))
+    cyl.scale(1, 2, 1)
+    cyl.name = "Cylinder 1"
+    scn.add_object(cyl)
+
     # Create and add a cube
     mat = Material()
     mat.set_gold()
