@@ -1,5 +1,6 @@
 from Point3 import Point3
 from Vector3 import Vector3
+import math
 
 class Ray:
     def __init__(self, source=None, dir=None, dest=None):
@@ -39,6 +40,12 @@ class Ray:
             self.dir.dz - t * norm.dz
         )
         return Ray(ref_source.__copy__(), reflected_dir)
+    
+    def compute_refraction(self,ref_source, norm, refIndex):
+        a = (self.dir - norm.scale(norm.dot(self.dir))).scale(1/refIndex)  #Verified, is correct
+        b = norm.scale(math.sqrt(1 - math.pow(1/refIndex , 2) * (1-math.pow(norm.dot(self.dir) , 2)))) #
+        refracted_dir = a - b
 
+        return Ray(ref_source.__copy__(), refracted_dir)
     def __repr__(self):
         return f"Ray(Start: {self.source}, Dir: {self.dir})"
