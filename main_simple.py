@@ -207,15 +207,15 @@ def init_scene():
     # scn.add_object(cyl)
 
     # Create and add a cube
-    # mat = Material()
-    # mat.set_gold()
-    # mat.set_reflectivity(0.5)
-    # cube = BoxObj()
-    # cube.name = "Minecraft"
-    # cube.set_material(mat)
-    # cube.translate(1, 0, 0)  # Position the cube
-    # cube.scale(1, 1, 1)      # Standard unit cube
-    # scn.add_object(cube)
+    mat = Material()
+    mat.set_gold()
+    mat.set_refractivity(0.8)
+    cube = BoxObj()
+    cube.name = "Minecraft"
+    cube.set_material(mat)
+    cube.translate(1, 0, 0)  # Position the cube
+    cube.scale(1, 1, 1)      # Standard unit cube
+    scn.add_object(cube)
 
     # Light setup
     lightA = Light()

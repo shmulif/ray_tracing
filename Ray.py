@@ -42,8 +42,13 @@ class Ray:
         return Ray(ref_source.__copy__(), reflected_dir)
     
     def compute_refraction(self, ref_source, norm, ref_index):
-        a = (self.dir - norm.scale(norm.dot(self.dir))).scale(1/ref_index)  # Verified, is correct
-        b = norm.scale(math.sqrt(1 - math.pow(1/ref_index , 2) * (1-math.pow(norm.dot(self.dir) , 2)))) #
+        a = norm
+        a.scale(norm.dot(self.dir))
+        a = self.dir - a
+        a.scale(1/ref_index)  # Verified, is correct
+
+        b = norm
+        b.scale(math.sqrt(1 - math.pow(1/ref_index , 2) * (1-math.pow(norm.dot(self.dir) , 2)))) #
         refracted_dir = a - b
 
         return Ray(ref_source.__copy__(), refracted_dir)
