@@ -50,6 +50,18 @@ scn = Scene()
 light_angle = 0
 light_speed = 1
 light_distance = 5
+lightB_angle = 0
+lightB_speed = 1.5  # Different speed for a different motion
+lightB_distance = 5
+
+lightC_angle = 0
+lightC_speed = 2  # Speed of light C motion
+lightC_distance = 7
+
+lightD_angle = 180
+lightD_speed = 1  # Speed of light D motion
+lightD_distance = 6
+
 animate = True  # Animation
 
 # Enums for rendering modes
@@ -62,19 +74,29 @@ raytrace_count = 0  # How many ray traced images have been generated so far
 block_size = 4
 
 # Functions
-def set_light_positions(lightA):
-    global light_angle, light_distance
-    pos_x = light_distance * math.cos(math.radians(light_angle))
-    pos_y = light_distance * math.sin(math.radians(light_angle))
+# def set_light_positions(lightA):
+#     global light_angle, light_distance
+#     pos_x = light_distance * math.cos(math.radians(light_angle))
+#     pos_y = light_distance * math.sin(math.radians(light_angle))
+#     pos_z = 0
+
+#     lightA.set_position(pos_x, pos_y, pos_z)
+#     lightA.obj.reset()
+#     lightA.obj.translate(pos_x, pos_y, pos_z)
+#     lightA.obj.scale(0.2, 0.2, 0.2)
+
+def set_light_positions(light, angle, distance):
+    pos_x = distance * math.cos(math.radians(angle))
+    pos_y = distance * math.sin(math.radians(angle))
     pos_z = 0
 
-    lightA.set_position(pos_x, pos_y, pos_z)
-    lightA.obj.reset()
-    lightA.obj.translate(pos_x, pos_y, pos_z)
-    lightA.obj.scale(0.2, 0.2, 0.2)
+    light.set_position(pos_x, pos_y, pos_z)
+    light.obj.reset()
+    light.obj.translate(pos_x, pos_y, pos_z)
+    light.obj.scale(0.2, 0.2, 0.2)
 
 def init_scene():
-    global scn, nav, lightA
+    global scn, nav, lightA, lightB, lightC, lightD
 
     # Setup camera
     cam = nav.get_camera()
@@ -209,7 +231,54 @@ def init_scene():
     lightA.obj.set_material(mat)
     scn.add_object(lightA.obj)
 
-    set_light_positions(lightA)
+    set_light_positions(lightA, light_angle, light_distance)
+   
+    # Add second light to the scene
+    lightB = Light()
+    scn.add_light(lightB)
+
+    # Set material for the second light
+    mat = Material()
+    mat.set_emissive_only(lightB.get_diffuse())
+    mat.set_translucent(True)
+
+    # Create a visible component for the second light
+    lightB.obj = SphereObj()
+    lightB.obj.name = "Second Light Source"
+    lightB.obj.set_material(mat)
+    scn.add_object(lightB.obj)
+
+    # Set initial position for the second light
+    set_light_positions(lightB, lightB_angle, lightB_distance)
+
+    # Light C setup
+    lightC = Light()
+    scn.add_light(lightC)
+    mat = Material()
+    mat.set_emissive_only(lightC.get_diffuse())
+    mat.set_translucent(True)
+
+    lightC.obj = SphereObj()
+    lightC.obj.name = "Light Source C"
+    lightC.obj.set_material(mat)
+    scn.add_object(lightC.obj)
+
+    set_light_positions(lightC, lightC_angle, lightC_distance)
+
+    # Light D setup
+    lightD = Light()
+    scn.add_light(lightD)
+    mat = Material()
+    mat.set_emissive_only(lightD.get_diffuse())
+    mat.set_translucent(True)
+
+    lightD.obj = SphereObj()
+    lightD.obj.name = "Light Source D"
+    lightD.obj.set_material(mat)
+    scn.add_object(lightD.obj)
+
+    set_light_positions(lightD, lightD_angle, lightD_distance)
+     
 
 # Return a copy of all the things in scene that could have changed!
 def get_copy_state():
@@ -410,7 +479,7 @@ def add_fillerer_cube_to_scene():
     scn.add_object(reflect_cube)
     
 def main():
-    global light_angle, light_distance, lightA, render_mode, animate
+    global light_angle, light_distance, lightA, lightB, lightB_angle, lightC, lightC_angle, lightD, lightD_angle, light_distance, render_mode, animate
     win.initialize()
     init_scene()
 
@@ -435,13 +504,25 @@ def main():
             # Advance the navigator
             nav.advance()
    
-            # Do any other animations needed (like moving objects around)
-            # Move the main light around
+             # Animate light A
             light_angle += light_speed
-            if light_angle >= 360: light_angle -= 360
-            elif light_angle < 0: light_angle += 360
+            light_angle %= 360
+            set_light_positions(lightA, light_angle, light_distance)
 
-            set_light_positions(lightA)
+            # Animate light B
+            lightB_angle += lightB_speed
+            lightB_angle %= 360
+            set_light_positions(lightB, lightB_angle, lightB_distance)
+
+            # Animate light C
+            lightC_angle += lightC_speed
+            lightC_angle %= 360
+            set_light_positions(lightC, lightC_angle, lightC_distance)
+
+            # Animate light D
+            lightD_angle += lightD_speed
+            lightD_angle %= 360
+            set_light_positions(lightD, lightD_angle, lightD_distance)
 
         display()
         
