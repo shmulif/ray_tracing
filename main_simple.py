@@ -116,8 +116,8 @@ def init_scene():
     back_wall = BoxObj()
     back_wall.name = "Back Wall"
     back_wall.set_material(mat)
-    back_wall.scale(10, 7, 0.1)
-    back_wall.translate(0, 0.5, -100)
+    back_wall.scale(20, 14, 0.1)
+    back_wall.translate(0, 1.5, -200)
     scn.add_object(back_wall)
 
     #front wall
@@ -126,8 +126,8 @@ def init_scene():
     frontwall = BoxObj()
     frontwall.name = "frontwall"
     frontwall.set_material(mat)
-    frontwall.scale(10, 7, 0.1)
-    frontwall.translate(0, 0.5, 100)
+    frontwall.scale(20, 14, 0.1)
+    frontwall.translate(0, 1, 200)
     scn.add_object(frontwall)
 
     # Left Wall
@@ -136,8 +136,8 @@ def init_scene():
     left_wall = BoxObj()
     left_wall.name = "Left Wall"
     left_wall.set_material(mat)
-    left_wall.scale(0.1, 7, 10)
-    left_wall.translate(100,0.5, 0)
+    left_wall.scale(0.1, 14, 20)
+    left_wall.translate(200, 1.0, 0)
     #left_wall.rotate(90,Vector3(0,0,0))
     scn.add_object(left_wall)
 
@@ -147,8 +147,8 @@ def init_scene():
     right_wall = BoxObj()
     right_wall.name = "Right Wall"
     right_wall.set_material(mat)
-    right_wall.scale(0.1, 7, 10)
-    right_wall.translate(-100, 0.5, 0)
+    right_wall.scale(0.1, 14, 20)
+    right_wall.translate(-200, 1.0, 0)
     scn.add_object(right_wall)
 
     # Ceiling
@@ -157,8 +157,8 @@ def init_scene():
     ceiling = BoxObj()
     ceiling.name = "Ceiling"
     ceiling.set_material(mat)
-    ceiling.scale(10, 0.1, 10)
-    ceiling.translate(0, 100, 0)
+    ceiling.scale(20, 0.1, 20)
+    ceiling.translate(0, 200, 0)
     scn.add_object(ceiling)
 
     # Create and add a sphere
@@ -411,7 +411,7 @@ def add_menorah_to_scene():
         # Flame material
         mat = Material()
         mat.set_gold()
-        mat.set_reflectivity(0.8)
+        mat.set_reflectivity(0.2)
 
         # Flame (Sphere)
         flame = SphereObj()
@@ -424,7 +424,7 @@ def add_menorah_to_scene():
 def add_reflect_cube_to_scene():
     # Create a reflective material
     mat = Material()
-    mat.set_silver()
+    mat.set_pewter()
     mat.set_reflectivity(0.9)
 
     # Create a cube
@@ -453,7 +453,7 @@ def add_refractive_cube_to_scene():
 def add_filler_cube_to_scene():
     # Create a reflective material
     mat = Material()
-    mat.set_silver()
+    mat.set_pewter()
     mat.set_reflectivity(0.9)
 
     # Create a cube
@@ -488,9 +488,9 @@ def main():
 
     add_menorah_to_scene()
     add_reflect_cube_to_scene()
-    add_refractive_cube_to_scene()
+    # add_refractive_cube_to_scene()
     add_filler_cube_to_scene()
-    add_fillerer_cube_to_scene()
+    # add_fillerer_cube_to_scene()
 
     # Set up lighting and depth-test
     glEnable(GL_LIGHTING)
