@@ -113,13 +113,14 @@ from Color import Color
 from OpenGL.GL import glMaterialfv, GL_FRONT_AND_BACK, GL_AMBIENT, GL_DIFFUSE, GL_SPECULAR, GL_EMISSION, GL_SHININESS
 
 class Material:
-    def __init__(self, emissive=None, ambient=None, diffuse=None, specular=None, shininess=1.0, reflectivity=0.0, translucent=False):
-        self.emissive = emissive if isinstance(emissive, Color) else Color(0.0, 0.0, 0.0, 1.0)
-        self.ambient = ambient if isinstance(ambient, Color) else Color(0.2, 0.2, 0.2, 1.0)
-        self.diffuse = diffuse if isinstance(diffuse, Color) else Color(0.8, 0.8, 0.8, 1.0)
-        self.specular = specular if isinstance(specular, Color) else Color(1.0, 1.0, 1.0, 1.0)
+    def __init__(self, emissive=None, ambient=None, diffuse=None, specular=None, shininess=1.0, reflectivity=0.0, refractivity = 0.0, translucent=False):
+        self.emissive = emissive if emissive else Color(0.0, 0.0, 0.0, 1.0)
+        self.ambient = ambient if ambient else Color(0.2, 0.2, 0.2, 1.0)
+        self.diffuse = diffuse if diffuse else Color(0.8, 0.8, 0.8, 1.0)
+        self.specular = specular if specular else Color(1.0, 1.0, 1.0, 1.0)
         self.shininess = shininess
         self.reflectivity = reflectivity
+        self.refractivity = refractivity
         self.translucent = translucent
 
     def set_emissive(self, color):
@@ -139,6 +140,9 @@ class Material:
 
     def set_reflectivity(self, value):
         self.reflectivity = value
+
+    def set_refractivity(self, value):
+        self.refractivity = value
 
     def set_translucent(self, is_translucent):
         self.translucent = is_translucent
@@ -160,6 +164,9 @@ class Material:
 
     def get_reflectivity(self):
         return self.reflectivity
+    
+    def get_refractivity(self):
+        return self.refractivity
 
     def is_translucent(self):
         return self.translucent

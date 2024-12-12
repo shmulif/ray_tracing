@@ -13,8 +13,12 @@ class Scene:
         self.lights = []  # List of lights in the scene
         self.background = Color(0, 0, 0, 1) if background_color is None else background_color
         self.reflection_adjustment = 0.01
+
         self.max_reflection_depth = 3
         self.reflective_coeff_cutoff = 0.05
+
+        self.max_refractivity_depth = 3 # For the theoretical possibilty of an object refracting itself through other objects
+        self.refractive_coeff_cutoff = 0.05 
 
     def add_object(self, obj):
         self.objects.append(obj)
@@ -94,7 +98,7 @@ class Scene:
     *         reflection off same material would have an influence of only 0.01 and yet again just 0.001 - most likely quite insignificant!
     *     returns the color
     """
-    def shade(self, ray, depth=0, reflective_coefficient=1.0, ignore=[]):
+    def shade(self, ray, depth=0, reflective_coefficient=1.0, refractive_coefficient=1.0, ignore=[]):
         # print("DEBUG: Shade method: Ray: {0}".format(ray))
         color = Color()
         best_hit = Hit()
@@ -166,8 +170,21 @@ class Scene:
 
                 # Ignore the object reflecting off or might think ray hits it immediately due to round-off err
                 ignore = [best_hit.obj]
-                reflection_color = self.shade(reflection_ray, depth + 1, reflective_coefficient, ignore=ignore)
+                reflection_color = self.shade(reflection_ray, depth + 1, reflective_coefficient, refractive_coefficient, ignore=ignore)
                 color.add_mix(reflection_color, mat.get_reflectivity())
+
+            refractive_coefficient *= mat.get_refractivity()
+            if refractive_coefficient > self.refractive_coeff_cutoff and depth < self.max_refractivity_depth:
+
+                refraction_ray = ray.compute_refraction(best_hit.point, best_hit.norm, mat.get_refractivity())
+
+                ignore = [best_hit.obj]
+                refraction_color = self.shade(refraction_ray, depth + 1, reflective_coefficient, refractive_coefficient, ignore=ignore)
+
+                # Compute the mix of color from the refraction and from the object itself
+                normalized_refractivity = mat.get_refractivity() / 2.42  # 2.42 is the max refraction in this program
+                color.add_mix(refraction_color, normalized_refractivity)
+
         else:
             color.set(self.background)
     
