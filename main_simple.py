@@ -446,7 +446,7 @@ def add_refractive_cube_to_scene():
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
     reflect_cube.translate(7, 5, 0)
-    reflect_cube.scale(1, 1, 1)
+    reflect_cube.scale(2, 2, 2)
     reflect_cube.name = "Refractive Minecraft"
     scn.add_object(reflect_cube)
 

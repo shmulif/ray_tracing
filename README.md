@@ -13,7 +13,7 @@ We included the following features in our project <br>
 **Graduate requirement:** 
 
 - Ray tracing of a cylinder
-- Refraction
+- Refraction [Cube on right]
 
 ## External Sources
 YouTube Videos
