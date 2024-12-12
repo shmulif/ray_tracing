@@ -13,7 +13,10 @@ We included the following features in our project <br>
 **Graduate requirement:** 
 
 - Ray tracing of a cylinder
-- Refraction [Cube on right]
+- Refraction [Implemented in the cube on the right]
+
+## Viewing instructions
+The camera is initially outside of the room. The user enters the room by navigating forward.
 
 ## External Sources
 YouTube Videos

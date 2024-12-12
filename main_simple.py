@@ -460,8 +460,8 @@ def add_filler_cube_to_scene():
     # Create a cube
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
-    reflect_cube.translate(-7, 12, 0)
-    reflect_cube.scale(1, 1, 1)
+    reflect_cube.translate(-7, -1, 0)
+    reflect_cube.scale(0.5, 0.5, 0.5)
     reflect_cube.name = "Reflective Minecraft"
     scn.add_object(reflect_cube)
 
@@ -474,8 +474,8 @@ def add_fillerer_cube_to_scene():
     # Create a cube
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
-    reflect_cube.translate(7, 12, 0)
-    reflect_cube.scale(1, 1, 1)
+    reflect_cube.translate(7, -1, 0)
+    reflect_cube.scale(0.5, 0.5, 0.5)
     reflect_cube.name = "Reflective Minecraft"
     scn.add_object(reflect_cube)
 
