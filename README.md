@@ -23,5 +23,4 @@ Khan Academy
  - [Course on Refraction](https://www.khanacademy.org/science/optics-essentials/x0484cce4552ac2a3:how-telescopes-and-microscopes-work/x0484cce4552ac2a3:why-does-a-straw-look-bent-in-water/v/refraction-and-snell-s-law)
 
  ChatGPT chats
-- [Sam's chatGPT chat](https://chatgpt.com/share/6758ab78-d24c-8000-b4dc-4afc8ed16229)
 - [Aban's chatGPT chat](https://chatgpt.com/share/6759df46-cc68-8002-a50b-975f6345d9cb)
