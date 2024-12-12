@@ -161,6 +161,17 @@ def init_scene():
     ceiling.translate(0, 100, 0)
     scn.add_object(ceiling)
 
+    # Floor
+    mat = Material()
+    mat.set_silver()
+    mat.set_reflectivity(0.8)
+    floor = BoxObj()
+    floor.name = "Floor"
+    floor.set_material(mat)
+    floor.translate(0, -2, 0)
+    floor.scale(10, 0.1, 10)
+    scn.add_object(floor)
+
     # Create and add a sphere
     # mat = Material()
     # mat.set_copper()
@@ -183,16 +194,6 @@ def init_scene():
     # cyl.scale(1, 2, 1)
     # cyl.name = "Cylinder 1"
     # scn.add_object(cyl)
-
-    # mat = Material()
-    # mat.set_silver()
-    # mat.set_reflectivity(0.8)
-    # floor = BoxObj()
-    # floor.name = "Floor"
-    # floor.set_material(mat)
-    # floor.translate(0, -2, 0)
-    # floor.scale(10, 0.1, 10)
-    # scn.add_object(floor)
 
     # Create and add a cylinder
     # mat = Material()
