@@ -430,7 +430,7 @@ def add_reflect_cube_to_scene():
     # Create a cube
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
-    reflect_cube.translate(-5, 3, 0)
+    reflect_cube.translate(-7, 5, 0)
     reflect_cube.scale(1, 1, 1)
     reflect_cube.name = "Reflective Minecraft"
     scn.add_object(reflect_cube)
@@ -440,12 +440,12 @@ def add_refractive_cube_to_scene():
     mat = Material()
     mat.set_silver()
     # Replace below with set_refractivity()
-    # mat.set_reflectivity(0.9)
+    mat.set_refractivity(1.2)
 
     # Create a cube
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
-    reflect_cube.translate(5, 3, 0)
+    reflect_cube.translate(7, 5, 0)
     reflect_cube.scale(1, 1, 1)
     reflect_cube.name = "Refractive Minecraft"
     scn.add_object(reflect_cube)
@@ -459,7 +459,7 @@ def add_filler_cube_to_scene():
     # Create a cube
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
-    reflect_cube.translate(-5, 10, 0)
+    reflect_cube.translate(-7, 12, 0)
     reflect_cube.scale(1, 1, 1)
     reflect_cube.name = "Reflective Minecraft"
     scn.add_object(reflect_cube)
@@ -468,12 +468,12 @@ def add_fillerer_cube_to_scene():
     # Create a reflective material
     mat = Material()
     mat.set_silver()
-    mat.set_reflectivity(0.9)
+    mat.set_refractivity(1.2)
 
     # Create a cube
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
-    reflect_cube.translate(5, 10, 0)
+    reflect_cube.translate(7, 12, 0)
     reflect_cube.scale(1, 1, 1)
     reflect_cube.name = "Reflective Minecraft"
     scn.add_object(reflect_cube)
