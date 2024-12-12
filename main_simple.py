@@ -131,7 +131,7 @@ def init_scene():
     # Create and add a cube
     mat = Material()
     mat.set_gold()
-    mat.set_reflectivity(0.5)
+    mat.set_refractivity(0.8)
     cube = BoxObj()
     cube.name = "Minecraft"
     cube.set_material(mat)
