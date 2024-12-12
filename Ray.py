@@ -41,16 +41,22 @@ class Ray:
         )
         return Ray(ref_source.__copy__(), reflected_dir)
     
+    #Refraction computation method
     def compute_refraction(self, ref_source, norm, ref_index):
+        #Using a calculation sourced from ChatGPT, we are able to calculate refraction for our scene 
+        #Calculate first half
         a = norm
         a.scale(norm.dot(self.dir))
         a = self.dir - a
         a.scale(1/ref_index)  # Verified, is correct
 
+        #Calculate second half
         b = norm
         b.scale(math.sqrt(1 - math.pow(1/ref_index , 2) * (1-math.pow(norm.dot(self.dir) , 2)))) #
+        
+        #Calculate for refraction
         refracted_dir = a - b
-
+        #Return the new refracted ray
         return Ray(ref_source.__copy__(), refracted_dir)
     
     def __repr__(self):

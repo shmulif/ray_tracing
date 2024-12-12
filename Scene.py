@@ -17,8 +17,8 @@ class Scene:
         self.max_reflection_depth = 3
         self.reflective_coeff_cutoff = 0.05
 
-        self.max_refractivity_depth = 3
-        self.refractive_coeff_cutoff = 0.05
+        self.max_refractivity_depth = 3 # For the theoretical possibilty of an object refracting itself through other objects
+        self.refractive_coeff_cutoff = 0.05 
 
     def add_object(self, obj):
         self.objects.append(obj)
@@ -175,14 +175,14 @@ class Scene:
 
             refractive_coefficient *= mat.get_refractivity()
             if refractive_coefficient > self.refractive_coeff_cutoff and depth < self.max_refractivity_depth:
-                # Material is reflective and its reflection actually makes a significant impact
-                # This is currently based on the reflectivity coefficient (accumulated over each recursive level)
+
                 refraction_ray = ray.compute_refraction(best_hit.point, best_hit.norm, mat.get_refractivity())
 
-                # Ignore the object reflecting off or might think ray hits it immediately due to round-off err
                 ignore = [best_hit.obj]
                 refraction_color = self.shade(refraction_ray, depth + 1, reflective_coefficient, refractive_coefficient, ignore=ignore)
-                normalized_refractivity = mat.get_refractivity() / 2.42
+
+                # Compute the mix of color from the refraction and from the object itself
+                normalized_refractivity = mat.get_refractivity() / 2.42  # 2.42 is the max refraction in this program
                 color.add_mix(refraction_color, normalized_refractivity)
 
         else:
