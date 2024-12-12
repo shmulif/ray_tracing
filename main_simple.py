@@ -383,7 +383,7 @@ def add_menorah_to_scene():
     # Horizontal bar of the Menorah
     mat = Material()
     mat.set_gold()
-    mat.set_reflectivity(0.3)
+    # mat.set_reflectivity(0.3)
     horizontal_bar = BoxObj()
     horizontal_bar.set_material(mat)
     horizontal_bar.translate(0, 3, 0)  # Positioned above the base
@@ -396,7 +396,7 @@ def add_menorah_to_scene():
         # Candle material
         mat = Material()
         mat.set_copper()
-        mat.set_reflectivity(0.1)
+        # mat.set_reflectivity(0.1)
 
         # Candle stick (Cylinder)
         candle = CylinderObj()
@@ -425,13 +425,13 @@ def add_reflect_cube_to_scene():
     # Create a reflective material
     mat = Material()
     mat.set_pewter()
-    mat.set_reflectivity(0.9)
+    mat.set_reflectivity(0.2)
 
     # Create a cube
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
     reflect_cube.translate(-5, 3, 0)
-    reflect_cube.scale(1, 3, 1)
+    reflect_cube.scale(1, 1, 1)
     reflect_cube.name = "Reflective Minecraft"
     scn.add_object(reflect_cube)
 
@@ -446,7 +446,7 @@ def add_refractive_cube_to_scene():
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
     reflect_cube.translate(5, 3, 0)
-    reflect_cube.scale(1, 3, 1)
+    reflect_cube.scale(1, 1, 1)
     reflect_cube.name = "Refractive Minecraft"
     scn.add_object(reflect_cube)
 
@@ -454,13 +454,13 @@ def add_filler_cube_to_scene():
     # Create a reflective material
     mat = Material()
     mat.set_pewter()
-    mat.set_reflectivity(0.9)
+    mat.set_reflectivity(0.2)
 
     # Create a cube
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
     reflect_cube.translate(-5, 10, 0)
-    reflect_cube.scale(1, 3, 1)
+    reflect_cube.scale(1, 1, 1)
     reflect_cube.name = "Reflective Minecraft"
     scn.add_object(reflect_cube)
 
@@ -474,10 +474,20 @@ def add_fillerer_cube_to_scene():
     reflect_cube = BoxObj()
     reflect_cube.set_material(mat)
     reflect_cube.translate(5, 10, 0)
-    reflect_cube.scale(1, 3, 1)
+    reflect_cube.scale(1, 1, 1)
     reflect_cube.name = "Reflective Minecraft"
     scn.add_object(reflect_cube)
-    
+
+def add_orb():
+    orb = SphereObj()
+    mat = Material()
+    mat.set_silver()
+    orb.translate(10, 3.5, 0)  # Above the candle
+    orb.scale(1, 1, 13)  # Small flame spheres
+    mat.set_reflectivity(0.9)
+
+    scn.add_object(orb)
+
 def main():
     global light_angle, light_distance, lightA, lightB, lightB_angle, lightC, lightC_angle, lightD, lightD_angle, light_distance, render_mode, animate
     win.initialize()
@@ -488,9 +498,10 @@ def main():
 
     add_menorah_to_scene()
     add_reflect_cube_to_scene()
-    # add_refractive_cube_to_scene()
+    add_refractive_cube_to_scene()
     add_filler_cube_to_scene()
-    # add_fillerer_cube_to_scene()
+    add_fillerer_cube_to_scene()
+    # add_orb()
 
     # Set up lighting and depth-test
     glEnable(GL_LIGHTING)
