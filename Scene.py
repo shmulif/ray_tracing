@@ -182,7 +182,8 @@ class Scene:
                 # Ignore the object reflecting off or might think ray hits it immediately due to round-off err
                 ignore = [best_hit.obj]
                 refraction_color = self.shade(refraction_ray, depth + 1, reflective_coefficient, refractive_coefficient, ignore=ignore)
-                color.add_mix(refraction_color, mat.get_refractivity())
+                normalized_refractivity = mat.get_refractivity() / 2.42
+                color.add_mix(refraction_color, normalized_refractivity)
 
         else:
             color.set(self.background)
