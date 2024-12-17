@@ -159,3 +159,5 @@ class BoxObj(GeomObj):
 
         best_hit.norm.normalize()
         best_hit.obj = self
+
+        return True
